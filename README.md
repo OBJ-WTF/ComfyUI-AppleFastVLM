@@ -155,28 +155,6 @@ Extract to `checkpoints/` directory.
 "What time of day does this appear to be?"
 ```
 
-## 🎯 Example Workflows
-
-### Basic Image Captioning
-```
-[Load Image] → [Apple FastVLM] → [Show Text]
-                      ↓
-                [prompt: "Describe this image"]
-```
-
-### Multi-Image Analysis
-```
-[Load Image 1] → [Apple FastVLM] → [Combine Text] → [Show Text]
-[Load Image 2] → [Apple FastVLM] →       ↑
-```
-
-### Conditional Workflow
-```
-[Load Image] → [Apple FastVLM] → [Text Analysis] → [Conditional Logic]
-                      ↓
-                [prompt: "Is there a person in this image?"]
-```
-
 ## ⚙️ Performance Optimization
 
 ### For Speed
