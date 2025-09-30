@@ -8,12 +8,12 @@
 
 **Fast and efficient Vision Language Model integration for ComfyUI**
 
-<img width="1505" height="712" alt="GIT_IMG" src="https://github.com/user-attachments/assets/05c4b948-f91f-4db3-bb7e-959adf56f8b4" />
+
 
 [Installation](#-installation) • [Usage](#-usage) • [Features](#-features) • [Troubleshooting](#-troubleshooting)
 
 </div>
-
+<img width="1505" height="712" alt="GIT_IMG" src="https://github.com/user-attachments/assets/05c4b948-f91f-4db3-bb7e-959adf56f8b4" />
 ---
 
 ## 🌟 Features
