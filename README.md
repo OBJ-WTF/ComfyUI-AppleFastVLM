@@ -196,7 +196,7 @@ max_tokens: 128
 ### Model Won't Load
 
 **Check**:
-1. Model path is correct: `checkpoints/llava-fastvithd_X.Xb_stage3`
+1. Model path is correct: `\COMFYUI\custom_nodes\ml-fastvlm\checkpoints/llava-fastvithd_X.Xb_stage3`
 2. Model files are extracted (not still in .zip)
 3. Dependencies installed: `pip install -r requirements.txt`
 4. FastVLM installed: `cd ml-fastvlm && pip install -e .`
