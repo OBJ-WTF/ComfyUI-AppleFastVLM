@@ -8,20 +8,22 @@
 
 **Fast and efficient Vision Language Model integration for ComfyUI**
 
-
-
 [Installation](#-installation) • [Usage](#-usage) • [Features](#-features) • [Troubleshooting](#-troubleshooting)
 
 </div>
+
 <img width="1505" height="712" alt="GIT_IMG" src="https://github.com/user-attachments/assets/05c4b948-f91f-4db3-bb7e-959adf56f8b4" />
 
+---
 
-## Features
+## ✨ Features
 
-- **⚡ Ultra-Fast**: 85x faster Time-to-First-Token compared to LLaVA-OneVision
-- **🎯 Multiple Models**: Support for 0.5B, 1.5B, and 7B parameter variants
-- **💾 Memory Efficient**: 4-bit and 8-bit quantization support
-- **🔄 Smart Caching**: Automatic model caching for faster inference
+- **⚡ Ultra-Fast**: 85x faster Time-to-First-Token compared to LLaVA-OneVision  
+- **🎯 Multiple Models**: Support for 0.5B, 1.5B, and 7B parameter variants  
+- **💾 Memory Efficient**: 4-bit and 8-bit quantization support  
+- **🔄 Smart Caching**: Automatic model caching for faster inference  
+
+---
 
 ## 📋 Requirements
 
@@ -39,57 +41,70 @@
 | FastVLM-1.5B | 8GB+ | 16GB+ | ⚖️ Balanced |
 | FastVLM-7B | 16GB+ | 24GB+ | 🎯 Most Accurate |
 
-> **Note**: 7B model can run on 8GB VRAM with 4-bit quantization
+> **Note**: 7B model can run on 8GB VRAM with 4-bit quantization  
+
+---
 
 ## 🚀 Installation
 
 ### Manual Installation
 
-Copy the node
-Place the folder in ComfyUI/custom_nodes/:
+Copy the node and place the folder in `ComfyUI/custom_nodes/`:
 
+```
 ComfyUI/custom_nodes/ComfyUI-AppleFastVLM/
+```
 
 ### Install dependencies
 
-```cd ComfyUI/custom_nodes/ComfyUI-AppleFastVLM
-pip install -r requirements.txt```
-If bitsandbytes fails to install, disable quantization in the node (load_in_4bit=False, load_in_8bit=False).
+```bash
+cd ComfyUI/custom_nodes/ComfyUI-AppleFastVLM
+pip install -r requirements.txt
+```
+
+If `bitsandbytes` fails to install, disable quantization in the node (`load_in_4bit=False`, `load_in_8bit=False`).  
 
 ### Install Apple’s FastVLM library
 
-```cd ..
+```bash
+cd ..
 git clone https://github.com/apple/ml-fastvlm.git
 cd ml-fastvlm
-pip install -e .```
+pip install -e .
+```
 
 ### Download models manually
-Create a checkpoints/ folder inside the ml-fastvlm folder and place Apple’s Stage 3 weights:
 
+Create a `checkpoints/` folder inside the `ml-fastvlm` folder and place Apple’s Stage 3 weights:
+
+```
 checkpoints/
 ├── llava-fastvithd_0.5b_stage3/
 ├── llava-fastvithd_1.5b_stage3/
 └── llava-fastvithd_7b_stage3/
+```
 
-### Models Links 
+### Models Links
 
 **Manual download**:
 
-- [FastVLM-0.5B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_0.5b_stage3.zip) - Lightweight, fastest
-- [FastVLM-1.5B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_1.5b_stage3.zip) - Balanced
-- [FastVLM-7B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_7b_stage3.zip) - Most accurate
+- [FastVLM-0.5B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_0.5b_stage3.zip) – Lightweight, fastest  
+- [FastVLM-1.5B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_1.5b_stage3.zip) – Balanced  
+- [FastVLM-7B](https://ml-site.cdn-apple.com/datasets/fastvlm/llava-fastvithd_7b_stage3.zip) – Most accurate  
 
-Extract to `checkpoints/` directory.
+Extract to `checkpoints/` directory.  
+
+---
 
 ## 📖 Usage
 
 ### In ComfyUI
 
-1. Right-click in the workflow canvas
-2. Navigate to: `Add Node` → `AppleVLM` → `FastVLM`
-3. Connect an image input
-4. Configure parameters
-5. Run the workflow
+1. Right-click in the workflow canvas  
+2. Navigate to: `Add Node` → `AppleVLM` → `FastVLM`  
+3. Connect an image input  
+4. Configure parameters  
+5. Run the workflow  
 
 ### Node Parameters
 
@@ -113,17 +128,18 @@ Extract to `checkpoints/` directory.
 
 ### Temperature Guide
 
-- **0.0 - 0.3**: Deterministic, factual (best for descriptions)
-- **0.4 - 0.7**: Balanced creativity
-- **0.8 - 1.0**: More creative and varied
-- **1.0+**: Highly creative (may be less accurate)
+- **0.0 - 0.3**: Deterministic, factual (best for descriptions)  
+- **0.4 - 0.7**: Balanced creativity  
+- **0.8 - 1.0**: More creative and varied  
+- **1.0+**: Highly creative (may be less accurate)  
 
+---
 
 ## 🐛 Troubleshooting
 
 ### Out of Memory Error
 
-**Symptoms**: `CUDA out of memory` or `RuntimeError`
+**Symptoms**: `CUDA out of memory` or `RuntimeError`  
 
 **Solutions**:
 ```bash
@@ -140,10 +156,10 @@ max_tokens: 128
 ### Model Won't Load
 
 **Check**:
-1. Model path is correct: `checkpoints/llava-fastvithd_X.Xb_stage3`
-2. Model files are extracted (not still in .zip)
-3. Dependencies installed: `pip install -r requirements.txt`
-4. FastVLM installed: `cd ml-fastvlm && pip install -e .`
+1. Model path is correct: `checkpoints/llava-fastvithd_X.Xb_stage3`  
+2. Model files are extracted (not still in .zip)  
+3. Dependencies installed: `pip install -r requirements.txt`  
+4. FastVLM installed: `cd ml-fastvlm && pip install -e .`  
 
 **Verify installation**:
 ```bash
@@ -153,12 +169,13 @@ python -c "from llava.model.builder import load_pretrained_model; print('OK')"
 ### Poor Quality Responses
 
 **Try**:
-- Use a larger model (7B instead of 0.5B)
-- Adjust temperature (0.2 for factual, 0.7-1.0 for creative)
-- Make prompt more specific
-- Ensure image quality is good
-- Check if model loaded correctly (no errors in console)
+- Use a larger model (7B instead of 0.5B)  
+- Adjust temperature (0.2 for factual, 0.7–1.0 for creative)  
+- Make prompt more specific  
+- Ensure image quality is good  
+- Check if model loaded correctly (no errors in console)  
 
+---
 
 ## 📁 Project Structure
 
@@ -172,24 +189,29 @@ ml-fastvlm
 └── checkpoints/           # Models directory (created on first run)
 ```
 
+---
+
 ## 🤝 Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! Please:  
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork the repository  
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)  
+3. Commit your changes (`git commit -m 'Add amazing feature'`)  
+4. Push to the branch (`git push origin feature/amazing-feature`)  
+5. Open a Pull Request  
 
+---
 
 ## 📜 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+This project is licensed under the MIT License – see [LICENSE](LICENSE) file.  
 
-**FastVLM Model License**: This node uses Apple's FastVLM. Please review:
-- [FastVLM LICENSE](https://github.com/apple/ml-fastvlm/blob/main/LICENSE)
-- [FastVLM LICENSE_MODEL](https://github.com/apple/ml-fastvlm/blob/main/LICENSE_MODEL)
+**FastVLM Model License**: This node uses Apple's FastVLM. Please review:  
+- [FastVLM LICENSE](https://github.com/apple/ml-fastvlm/blob/main/LICENSE)  
+- [FastVLM LICENSE_MODEL](https://github.com/apple/ml-fastvlm/blob/main/LICENSE_MODEL)  
+
+---
 
 ## 📚 Citation
 
@@ -206,21 +228,27 @@ If you use FastVLM in your research, please cite:
 }
 ```
 
+---
+
 ## 🙏 Credits
 
-- **FastVLM**: [Apple Inc.](https://github.com/apple/ml-fastvlm)
-- **LLaVA**: [Haotian Liu et al.](https://github.com/haotian-liu/LLaVA)
-- **ComfyUI**: [comfyanonymous](https://github.com/comfyanonymous/ComfyUI)
+- **FastVLM**: [Apple Inc.](https://github.com/apple/ml-fastvlm)  
+- **LLaVA**: [Haotian Liu et al.](https://github.com/haotian-liu/LLaVA)  
+- **ComfyUI**: [comfyanonymous](https://github.com/comfyanonymous/ComfyUI)  
+
+---
 
 ## 📧 Support
 
-- **Issues**: [GitHub Issues](https://github.com/OBJ-WTF/ComfyUI-AppleFastVLM/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/OBJ-WTF/ComfyUI-AppleFastVLM/discussions)
-- **FastVLM Issues**: [Apple ml-fastvlm](https://github.com/apple/ml-fastvlm/issues)
+- **Issues**: [GitHub Issues](https://github.com/OBJ-WTF/ComfyUI-AppleFastVLM/issues)  
+- **Discussions**: [GitHub Discussions](https://github.com/OBJ-WTF/ComfyUI-AppleFastVLM/discussions)  
+- **FastVLM Issues**: [Apple ml-fastvlm](https://github.com/apple/ml-fastvlm/issues)  
+
+---
 
 ## 🌟 Star History
 
-If you find this node useful, please consider giving it a star! ⭐
+If you find this node useful, please consider giving it a star! ⭐  
 
 ---
 
