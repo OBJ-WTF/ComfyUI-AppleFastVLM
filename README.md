@@ -48,11 +48,11 @@
 Copy the node
 Place the folder in ComfyUI/custom_nodes/:
 
-```ComfyUI/custom_nodes/ComfyUI-AppleFastVLM/
+ComfyUI/custom_nodes/ComfyUI-AppleFastVLM/
 ├── AppleFastVLMNode.py
 ├── __init__.py
 ├── requirements.txt
-└── README.md```
+└── README.md
 
 ### Install dependencies
 
