@@ -186,7 +186,7 @@ ComfyUI-AppleFastVLM/
 ├── requirements.txt       # Python dependencies
 ├── README.md              # This file
 ml-fastvlm
-└── checkpoints/           # Models directory (created on first run)
+└── checkpoints/           # Models directory 
 ```
 
 ---
