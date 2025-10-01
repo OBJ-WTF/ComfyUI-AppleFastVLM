@@ -16,20 +16,18 @@
 <img width="1505" height="712" alt="GIT_IMG" src="https://github.com/user-attachments/assets/05c4b948-f91f-4db3-bb7e-959adf56f8b4" />
 
 
-## 🌟 Features
+## Features
 
 - **⚡ Ultra-Fast**: 85x faster Time-to-First-Token compared to LLaVA-OneVision
 - **🎯 Multiple Models**: Support for 0.5B, 1.5B, and 7B parameter variants
 - **💾 Memory Efficient**: 4-bit and 8-bit quantization support
 - **🔄 Smart Caching**: Automatic model caching for faster inference
-- **🧹 Clean Output**: Automatic removal of conversation artifacts
 
 ## 📋 Requirements
 
 | Component | Requirement |
 |-----------|-------------|
-| Python | 3.8+ |
-| PyTorch | 2.0+ |
+| Python | 3.10+ |
 | GPU | CUDA-compatible (recommended) |
 | ComfyUI | Latest version |
 
@@ -45,38 +43,39 @@
 
 ## 🚀 Installation
 
-### Quick Install
+### Manual Installation
 
-```bash
-cd ComfyUI/custom_nodes/
-git clone https://github.com/OBJ-WTF/ComfyUI-AppleFastVLM.git
-cd ComfyUI-AppleFastVLM
-pip install -r requirements.txt
-```
+Copy the node
+Place the folder in ComfyUI/custom_nodes/:
 
-### Install FastVLM
+ComfyUI/custom_nodes/ComfyUI-AppleFastVLM/
+├── AppleFastVLMNode.py
+├── __init__.py
+├── requirements.txt
+└── README.md
 
-```bash
-cd ..
+### Install dependencies
+
+```cd ComfyUI/custom_nodes/ComfyUI-AppleFastVLM
+pip install -r requirements.txt```
+If bitsandbytes fails to install, disable quantization in the node (load_in_4bit=False, load_in_8bit=False).
+
+### Install Apple’s FastVLM library
+
+```cd ..
 git clone https://github.com/apple/ml-fastvlm.git
 cd ml-fastvlm
-pip install -e .
-cd ../ComfyUI-AppleFastVLM
-```
+pip install -e .```
 
-### Download Models
+### Download models manually
+Create a checkpoints/ folder inside the ml-fastvlm folder and place Apple’s Stage 3 weights:
 
-**Automatic download** (recommended):
+checkpoints/
+├── llava-fastvithd_0.5b_stage3/
+├── llava-fastvithd_1.5b_stage3/
+└── llava-fastvithd_7b_stage3/
 
-```bash
-# Download lightweight model (recommended to start)
-bash get_models.sh 0.5b
-
-# Or download specific model
-bash get_models.sh 1.5b  # Balanced model
-bash get_models.sh 7b    # Most accurate
-bash get_models.sh all   # All models (~12GB total)
-```
+### Models Links 
 
 **Manual download**:
 
@@ -123,59 +122,6 @@ Extract to `checkpoints/` directory.
 - **0.8 - 1.0**: More creative and varied
 - **1.0+**: Highly creative (may be less accurate)
 
-## 💡 Example Prompts
-
-### General Description
-```
-"Describe this image in detail."
-"What can you see in this image?"
-```
-
-### Specific Questions
-```
-"How many people are in this image?"
-"What colors are dominant in this scene?"
-"What is the person in the center doing?"
-```
-
-### Object Detection
-```
-"List all the objects you can identify."
-"What animals are visible in this image?"
-```
-
-### Text Recognition (OCR)
-```
-"What text appears in this image?"
-"Read the text visible in the scene."
-```
-
-### Scene Analysis
-```
-"What is happening in this image?"
-"Describe the setting and atmosphere."
-"What time of day does this appear to be?"
-```
-
-## ⚙️ Performance Optimization
-
-### For Speed
-- Use FastVLM-0.5B model
-- Enable 4-bit quantization
-- Lower `max_tokens` (128-256)
-- Keep temperature at 0.7 or below
-
-### For Accuracy
-- Use FastVLM-7B model
-- Disable quantization (if VRAM allows)
-- Increase `max_tokens` (512-1024)
-- Adjust temperature (0.2-0.5 for factual, 0.7-1.0 for creative)
-
-### For Memory Efficiency
-- Enable `load_in_4bit` for large models
-- Use smaller models when possible
-- Close other GPU applications
-- Reduce input image resolution if needed
 
 ## 🐛 Troubleshooting
 
@@ -217,11 +163,6 @@ python -c "from llava.model.builder import load_pretrained_model; print('OK')"
 - Ensure image quality is good
 - Check if model loaded correctly (no errors in console)
 
-### Slow First Load
-
-**This is normal**. First load takes 30-60 seconds depending on model size and disk speed. Subsequent loads use cached model and are instant.
-
-**To preload model**: Set `force_reload: False` and load once at workflow start.
 
 ## 📁 Project Structure
 
@@ -230,9 +171,8 @@ ComfyUI-AppleFastVLM/
 ├── AppleFastVLMNode.py    # Main node implementation
 ├── __init__.py            # ComfyUI entry point
 ├── requirements.txt       # Python dependencies
-├── get_models.sh          # Model download script
 ├── README.md              # This file
-├── LICENSE                # MIT License
+ml-fastvlm
 └── checkpoints/           # Models directory (created on first run)
 ```
 
@@ -246,7 +186,6 @@ Contributions are welcome! Please:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📜 License
 
