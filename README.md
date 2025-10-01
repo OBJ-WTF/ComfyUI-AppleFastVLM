@@ -114,7 +114,7 @@ Extract to `checkpoints/` directory.
 |-----------|-------------|---------|-------|
 | **image** | Input image | - | Any size |
 | **prompt** | Instruction text | "Describe this image in detail." | Text |
-| **model_path** | Model location | `checkpoints/llava-fastvithd_0.5b_stage3` | Path |
+| **model_path** | Model location | `custom_nodes/ml-fastvlm/checkpoints/llava-fastvithd_0.5b_stage3` | Path |
 | **temperature** | Creativity control | 0.7 | 0.0 - 2.0 |
 | **max_tokens** | Response length | 256 | 1 - 2048 |
 
